@@ -21,11 +21,22 @@ class Repos extends Component {
                 })
             })
     }
+
+    componentDidUpdate  = () => {
+        fetch(`http://api.github.com/users/${this.props.user.username}/repos`)
+          .then(response => response.json())
+          .then(data => {
+              console.log(data);
+              this.setState({
+                  repos: data,
+              })
+          })
+    }
     
     render(){
-        const listItems = this.state.repos.map((d) => <List key={d.id}><ListItem button><Folder/>{d.name}</ListItem></List>);
+        const listItems = this.state.repos.map((d) => <List key={d.id}><ListItem component="a" target="_blank" href={d.html_url} button><ListItemIcon><Folder/></ListItemIcon>{d.name}</ListItem></List>);
         return(
-            <div>{listItems}}</div>
+            <div>{listItems}</div>
         );
     }
 }

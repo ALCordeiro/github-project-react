@@ -15,7 +15,7 @@ class User extends Component{
         if (user.id != null) {
             return(
                 <div onLoad={() => this.getRepositories}>
-                    <Card className="card" onLoad={() => this.getRepositories}>
+                    <Card className="card" style={{overflow: 'auto', height: '100%'}}>
                         <CardHeader className="header" avatar={<Avatar aria-label="Recipe" className="avatar" src={user.avatar_url}></Avatar>} action={<a target="_blank" href={user.profile}><IconButton><KeyboardArrowRight /></IconButton></a>} title={user.name} subheader={user.username}>
                         </CardHeader>
                         <CardContent>

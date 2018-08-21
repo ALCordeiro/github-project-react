@@ -16,6 +16,7 @@ class App extends Component {
   getUser = () => {
     const name = this.refs.name.value;
     const url = `http://api.github.com/users/${name}`;
+    const github_url = "https://www.github.com/";
     this.setState({loading: true});
     setTimeout(() => {
       fetch(url)
@@ -29,7 +30,7 @@ class App extends Component {
               username: data.login,
               name: data.name,
               location: data.location,
-              profile: "https://www.github.com/" + data.login
+              profile: github_url + data.login
             }
           });
         });

@@ -3,7 +3,6 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
 
@@ -57,6 +56,13 @@ input{
 
 .pulse:hover {
   animation: none;
+}
+
+@media screen and (max-width: 425px){
+  .pulse{
+    margin:0% 42.5% !important;
+  }
+
 }
 
 @media screen and (max-width: 560px){

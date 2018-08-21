@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
-
-const styles = theme => ({
-  progress: {
-    margin: theme.spacing.unit * 2,
-  },
-});
 
 class LoadingSpinner extends Component{
   timer = null;
@@ -30,21 +22,16 @@ class LoadingSpinner extends Component{
   };
 
   render(){
-    const { classes } = this.props;
     return (
       <div>
           <CircularProgress 
             variant="determinate"
-            color="black"
+            color="inherit"
             value={this.state.completed}
           />
       </div>
     );
   }
 }
-
-LoadingSpinner.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default LoadingSpinner;

@@ -28,7 +28,7 @@ class Repos extends Component {
   };
 
   componentDidUpdate = (prevProps) => {
-    if (this.props.user.username != prevProps.user.username)
+    if (this.props.user.username !== prevProps.user.username)
       this.getRepositories();
   };
 

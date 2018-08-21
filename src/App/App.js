@@ -14,7 +14,7 @@ class App extends Component {
   };
 
   getUser = () => {
-    const name = this.refs.name.value;
+    const name = this.name.value;
     const url = `http://api.github.com/users/${name}`;
     const github_url = "https://www.github.com/";
     this.setState({loading: true});
@@ -58,7 +58,7 @@ class App extends Component {
           <input onKeyPress={this.handleKeyPress}
             type="text"
             placeholder="Search Github"
-            ref="name"
+            ref={(name) => {this.name = name}}
             className="search"
             id="search_input"
           />

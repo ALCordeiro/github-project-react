@@ -3,31 +3,37 @@ import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import logoGithub from "../GitHub-Mark-Light-64px.png";
 import User from "../User/User";
+import LoadingSpinner from "../LoadingSpinner";
 import "./App.css";
 
 class App extends Component {
 
   state = {
-    user: {}
+    user: {},
+    loading: false,
   };
 
   getUser = () => {
     const name = this.refs.name.value;
     const url = `http://api.github.com/users/${name}`;
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          user: {
-            id: data.id,
-            avatar_url: data.avatar_url,
-            username: data.login,
-            name: data.name,
-            location: data.location,
-            profile: "https://www.github.com/" + data.login
-          }
+    this.setState({loading: true});
+    setTimeout(() => {
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          this.setState({
+            loading: false,
+            user: {
+              id: data.id,
+              avatar_url: data.avatar_url,
+              username: data.login,
+              name: data.name,
+              location: data.location,
+              profile: "https://www.github.com/" + data.login
+            }
+          });
         });
-      });
+    }, 300);
   };
 
   handleKeyPress = (event) => {
@@ -37,7 +43,7 @@ class App extends Component {
   }
 
   render() {
-    const { user } = this.state;
+    const { user, loading } = this.state;
     const github_url = "https://www.github.com";
     return (
       <div className="App">
@@ -58,7 +64,7 @@ class App extends Component {
             <SearchIcon />
           </IconButton>
         </p>
-        <User user={user} />
+        {loading ? <LoadingSpinner /> : <User user={user} />}
       </div>
     );
   }

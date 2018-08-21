@@ -10,21 +10,26 @@ class Repos extends Component {
   };
 
   getRepositories = () => {
-    fetch(`http://api.github.com/users/${this.props.user.username}/repos`)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          repos: data
-        });
-      });
+    const fetchWeatherData = username =>{
+      const url = `http://api.github.com/users/${username}/repos`;
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            this.setState({
+              repos: data
+            });
+          });
+    };
+    fetchWeatherData(this.props.user.username) 
   }
-
+  
   componentDidMount = () => {
     this.getRepositories();
   };
 
-  componentDidUpdate = () => {
-    this.getRepositories();
+  componentDidUpdate = (prevProps) => {
+    if (this.props.user.username != prevProps.user.username)
+      this.getRepositories();
   };
 
   render() {

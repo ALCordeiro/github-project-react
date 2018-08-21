@@ -33,7 +33,7 @@ class App extends Component {
             }
           });
         });
-    }, 300);
+    }, 500);
   };
 
   handleKeyPress = (event) => {

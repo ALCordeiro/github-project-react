@@ -5,7 +5,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Avatar from "@material-ui/core/Avatar";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import IconButton from "@material-ui/core/IconButton";
-import Repos from "./Repos";
+import Repos from "../Repos/Repos";
 import "./User.css";
 
 class User extends Component {
@@ -14,7 +14,7 @@ class User extends Component {
     if (user.id != null) {
       return (
         <div>
-          <Card className="card" style={{ overflow: "auto", height: "100%" }}>
+          <Card className="card" style={{ overflow: "auto", height: "100%", flex:"1", flexDirection:"column", justifyContent:"center", alignItems:"center" }}>
             <CardHeader
               className="header"
               avatar={

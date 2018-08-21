@@ -11,41 +11,38 @@ import "./User.css";
 class User extends Component {
   render() {
     const { user } = this.props;
-    if (user.id != null) {
-      return (
-        <div>
-          <Card className="card" style={{ overflow: "auto", height: "100%", flex:"1", flexDirection:"column", justifyContent:"center", alignItems:"center" }}>
-            <CardHeader
-              className="header"
-              avatar={
-                <Avatar
-                  aria-label="Recipe"
-                  className="avatar"
-                  src={user.avatar_url}
-                />
-              }
-              action={
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={user.profile}
-                >
-                  <IconButton>
-                    <KeyboardArrowRight />
-                  </IconButton>
-                </a>
-              }
-              title={user.name}
-              subheader={user.username}
-            />
-            <CardContent>
-              <Repos user={user} />
-            </CardContent>
-          </Card>
-        </div>
-      );
-    }
-    return null;
+    return (
+      <div>
+        <Card className="card" style={{ overflow: "auto", height: "100%", flex:"1", flexDirection:"column", justifyContent:"center", alignItems:"center" }}>
+          <CardHeader
+            className="header"
+            avatar={
+              <Avatar
+                aria-label="Recipe"
+                className="avatar"
+                src={user.avatar_url}
+              />
+            }
+            action={
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={user.profile}
+              >
+                <IconButton>
+                  <KeyboardArrowRight />
+                </IconButton>
+              </a>
+            }
+            title={user.name}
+            subheader={user.username}
+          />
+          <CardContent>
+            <Repos user={user} />
+          </CardContent>
+        </Card>
+      </div>
+    );
   }
 }
 

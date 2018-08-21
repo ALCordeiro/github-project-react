@@ -59,12 +59,13 @@ class App extends Component {
             placeholder="Search Github"
             ref="name"
             className="search"
+            id="search_input"
           />
           <IconButton className="search-icon" id="search" onClick={this.getUser} aria-label="Search">
             <SearchIcon />
           </IconButton>
         </p>
-        {loading ? <LoadingSpinner /> : <User user={user} />}
+        {loading ? <LoadingSpinner /> : user.id != null ? <User user={user} /> : <span></span>}
       </div>
     );
   }

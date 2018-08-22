@@ -6,7 +6,6 @@ import Avatar from "@material-ui/core/Avatar";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import IconButton from "@material-ui/core/IconButton";
 import Repos from "../Repos/Repos";
-import PropTypes from 'prop-types';
 import "./User.css";
 
 export const User = props => {

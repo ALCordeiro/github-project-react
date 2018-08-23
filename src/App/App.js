@@ -4,6 +4,9 @@ import SearchIcon from "@material-ui/icons/Search";
 import logoGithub from "../GitHub-Mark-Light-64px.png";
 import User from "../User/User";
 import LoadingSpinner from "../LoadingSpinner";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { clickButton } from '../Actions';
 import "./App.css";
 
 class App extends Component {
@@ -11,6 +14,7 @@ class App extends Component {
   state = {
     user: {},
     loading: false,
+    inputValue: ''
   };
 
   getUser = () => {
@@ -43,9 +47,19 @@ class App extends Component {
     }
   }
 
+  inputChange = event => {
+    this.setState({
+      inputValue: event.target.value
+    })
+  }
+
   render() {
     const { user, loading } = this.state;
     const github_url = "https://www.github.com";
+    const { clickButton, newValue } = this.props;
+
+    const { inputValue } = this.state;
+
     return (
       <div className="App">
         <header className="App-header">
@@ -67,9 +81,21 @@ class App extends Component {
           </IconButton>
         </p>
         {loading ? <LoadingSpinner /> : user.id != null ? <User user={user} /> : <span></span>}
+        <input type='text' onChange={this.inputChange} value={inputValue}/>
+        <button onClick={() => clickButton(inputValue)}>
+          Click me!
+        </button>
+        <h1>{newValue}</h1>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = store => ({
+  newValue: store.clickState.newValue
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ clickButton }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

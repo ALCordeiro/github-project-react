@@ -13,8 +13,7 @@ class App extends Component {
 
   state = {
     user: {},
-    loading: false,
-    inputValue: ''
+    loading: false
   };
 
   getUser = () => {
@@ -47,18 +46,14 @@ class App extends Component {
     }
   }
 
-  inputChange = event => {
-    this.setState({
-      inputValue: event.target.value
-    })
-  }
-
   render() {
     const { user, loading } = this.state;
     const github_url = "https://www.github.com";
-    const { clickButton, newValue } = this.props;
+    // const { clickButton, newValue } = this.props;
 
-    const { inputValue } = this.state;
+    // const { inputValue } = this.state;
+
+    console.log(this.props);
 
     return (
       <div className="App">
@@ -81,18 +76,13 @@ class App extends Component {
           </IconButton>
         </p>
         {loading ? <LoadingSpinner /> : user.id != null ? <User user={user} /> : <span></span>}
-        <input type='text' onChange={this.inputChange} value={inputValue}/>
-        <button onClick={() => clickButton(inputValue)}>
-          Click me!
-        </button>
-        <h1>{newValue}</h1>
       </div>
     );
   }
 }
 
 const mapStateToProps = store => ({
-  newValue: store.clickState.newValue
+  user: store.user
 });
 
 const mapDispatchToProps = dispatch =>

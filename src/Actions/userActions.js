@@ -1,9 +1,10 @@
 import axios from "axios";
 
-export function getUser() {
+const url = "https://api.github.com/users/";
+
+export function fetchUser(user) {
   return function(dispatch) {
-    axios
-      .get("http://api.github.com/users/mvmjacobs")
+    axios.get(`${url}${user}`)
       .then(response => {
         dispatch({ type: "GET_USER", payload: response.data });
       })

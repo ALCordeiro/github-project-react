@@ -3,37 +3,22 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Folder from "@material-ui/icons/Folder";
+import { connect } from 'react-redux';
+import { fetchRepos } from '../Actions/reposActions';
 
 class Repos extends Component {
-  state = {
-    repos: []
-  };
-
-  getRepositories = () => {
-    const fetchWeatherData = username =>{
-      const url = `http://api.github.com/users/${username}/repos`;
-        fetch(url)
-          .then(response => response.json())
-          .then(data => {
-            this.setState({
-              repos: data
-            });
-          });
-    };
-    fetchWeatherData(this.props.user.username) 
-  }
   
   componentDidMount = () => {
-    this.getRepositories();
+    this.props.fetchRepos(this.props.user.login);
   };
 
   componentDidUpdate = (prevProps) => {
-    if (this.props.user.username !== prevProps.user.username)
-      this.getRepositories();
+    if (this.props.user.login !== prevProps.user.login)
+      this.props.fetchRepos(this.props.user.login);
   };
 
   render() {
-    const listItems = this.state.repos.map(d => (
+    const listItems = this.props.repos.repos.map(d => (
       <List key={d.id}>
         <ListItem component="a" target="_blank" href={d.html_url} button>
           <ListItemIcon>
@@ -47,4 +32,16 @@ class Repos extends Component {
   }
 }
 
-export default Repos;
+const mapStateToProps = state => ({
+  repos: state.repos
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return{
+    fetchRepos:(username) =>{
+      dispatch(fetchRepos(username))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Repos);

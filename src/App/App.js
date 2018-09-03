@@ -5,7 +5,6 @@ import logoGithub from "../GitHub-Mark-Light-64px.png";
 import User from "../User/User";
 import LoadingSpinner from "../LoadingSpinner";
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
 import { fetchUser } from '../Actions/userActions';
 import "./App.css";
 
@@ -16,30 +15,6 @@ class App extends Component {
     loading: false
   };
 
-  // getUser = () => {
-  //   const name = this.name.value;
-  //   const url = `http://api.github.com/users/${name}`;
-  //   const github_url = "https://www.github.com/";
-  //   this.setState({loading: true});
-  //   setTimeout(() => {
-  //     fetch(url)
-  //       .then(response => response.json())
-  //       .then(data => {
-  //         this.setState({
-  //           loading: false,
-  //           user: {
-  //             id: data.id,
-  //             avatar_url: data.avatar_url,
-  //             username: data.login,
-  //             name: data.name,
-  //             location: data.location,
-  //             profile: github_url + data.login
-  //           }
-  //         });
-  //       });
-  //   }, 500);
-  // };
-
   handleKeyPress = (event) => {
     if (event.key === 'Enter'){
       this.props.fetchUser(this.name.value);
@@ -49,9 +24,6 @@ class App extends Component {
   render() {
     const { user, loading } = this.state;
     const github_url = "https://www.github.com";
-
-    console.log(this.props);
-
     return (
       <div className="App">
         <header className="App-header">

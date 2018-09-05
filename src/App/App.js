@@ -15,6 +15,10 @@ class App extends Component {
     loading: false
   };
 
+  getUser = () => {
+    this.props.fetchUser(this.name.value);
+  }
+
   handleKeyPress = (event) => {
     if (event.key === 'Enter'){
       this.props.fetchUser(this.name.value);
@@ -40,7 +44,7 @@ class App extends Component {
             className="search"
             id="search_input"
           />
-          <IconButton className="search-icon" id="search" onClick={this.props.fetchUser} aria-label="Search">
+          <IconButton className="search-icon" id="search" onClick={this.getUser} aria-label="Search">
             <SearchIcon />
           </IconButton>
         </p>

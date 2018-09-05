@@ -33,7 +33,7 @@ export const User = props => {
             />
           }
           action={
-            <a target="_blank" rel="noopener noreferrer" href={user.profile}>
+            <a target="_blank" rel="noopener noreferrer" href={user.html_url}>
               <IconButton>
                 <KeyboardArrowRight />
               </IconButton>

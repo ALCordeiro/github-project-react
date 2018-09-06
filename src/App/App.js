@@ -26,8 +26,9 @@ class App extends Component {
   }
 
   render() {
-    const { user, loading } = this.state;
     const github_url = "https://www.github.com";
+    const { loading, user } = this.props;
+    console.log(this.props.user.user);
     return (
       <div className="App">
         <header className="App-header">
@@ -48,14 +49,15 @@ class App extends Component {
             <SearchIcon />
           </IconButton>
         </p>
-        {this.props.loading ? <LoadingSpinner /> : this.props.user.user.id != null ? <User user={this.props.user.user} /> : <span></span>}
+        {loading ? <LoadingSpinner /> : this.props.user.user.id != null ? <User user={this.props.user.user} /> : <span></span>}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  loading: state.user.loading
 });
 
 const mapDispatchToProps = (dispatch) => {

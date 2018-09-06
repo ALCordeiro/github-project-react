@@ -26,6 +26,15 @@ export default function reducer(
         loading: false
       };
     }
+    case "GET_USER_ERR": {
+      return {
+        ...state,
+        fetching: false,
+        fetched: false,
+        user: "User not found",
+        loading: false
+      };
+    }
     default:
       return state;
   }

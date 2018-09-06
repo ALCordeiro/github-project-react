@@ -28,7 +28,8 @@ class App extends Component {
   render() {
     const github_url = "https://www.github.com";
     const { loading, user } = this.props;
-    console.log(this.props.user.user);
+    console.log(this.props);
+    debugger;
     return (
       <div className="App">
         <header className="App-header">
@@ -49,7 +50,7 @@ class App extends Component {
             <SearchIcon />
           </IconButton>
         </p>
-        {loading ? <LoadingSpinner /> : this.props.user.user.id != null ? <User user={this.props.user.user} /> : <span></span>}
+        {loading ? <LoadingSpinner /> : this.props.user.user.id != null ? <User user={this.props.user.user} /> : <span className="not-found">{this.props.user.user}</span>}
       </div>
     );
   }

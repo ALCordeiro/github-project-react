@@ -27,8 +27,7 @@ class App extends Component {
 
   render() {
     const github_url = "https://www.github.com";
-    const { loading, user } = this.props;
-    console.log(this.props);
+    const { loading } = this.props;
     debugger;
     return (
       <div className="App">
